@@ -25,6 +25,8 @@ packer.startup(function(use)
 
   use 'glepnir/lspsaga.nvim' -- LSP UIs
   use 'L3MON4D3/LuaSnip'
+  use "ray-x/lsp_signature.nvim"
+
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
@@ -40,10 +42,15 @@ packer.startup(function(use)
     run = function() vim.fn["mkdp#util#install"]() end,
   })
   use 'akinsho/nvim-bufferline.lua'
-  use({
-    "andweeb/presence.nvim", --Discord
-    config = function()
-      require("configs.presence")
-    end,
-  })
+
+  -- Java jdtls
+  use 'mfussenegger/nvim-jdtls'
+
+  -- Discord
+  use 'andweeb/presence.nvim'
+
+  -- Terminal
+  use { "akinsho/toggleterm.nvim", tag = '*', config = function()
+    require("toggleterm").setup()
+  end }
 end)

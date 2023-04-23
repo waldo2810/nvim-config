@@ -32,3 +32,17 @@ keymap.set('n', '<C-left>', '<C-w><')
 keymap.set('n', '<C-right>', '<C-w>>')
 keymap.set('n', '<C-up>', '<C-w>+')
 keymap.set('n', '<C-down>', '<C-w>-')
+
+-- Terminal
+keymap.set('', '<leader>tc', '<Cmd>ToggleTermToggleAll<CR>')
+
+-- Java
+function keymap.map_java_keys(bufnr)
+  keymap.map_lsp_keys()
+
+  local spring_boot_run = 'mvn spring-boot:run'
+  local command = ':lua require("toggleterm").exec("' .. spring_boot_run .. '")<CR>'
+  keymap.set('n', '<leader>sr', command)
+  keymap.set('n', '<leader>oi', ':lua require("jdtls").organize_imports()<CR>')
+  keymap.set('n', '<leader>jc', ':lua require("jdtls).compile("incremental")')
+end
